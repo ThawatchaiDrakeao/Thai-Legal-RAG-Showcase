@@ -1,0 +1,1730 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   Design Tokens (Godly / Recent.design Aesthetic)
+   ========================================================================== */
+:root, [data-theme="light"] {
+  /* Ink & Paper Editorial Palette */
+  --bg-canvas: #FBFBF9;
+  --bg-surface: #FFFFFF;
+  --bg-surface-muted: #F3F2EC;
+  --bg-surface-hover: #ECEAE1;
+  --bg-dock: rgba(251, 251, 249, 0.92);
+
+  --accent-primary: #D97757;
+  --accent-hover: #C56242;
+  --accent-soft: rgba(217, 119, 87, 0.1);
+  --accent-text: #B85434;
+
+  --accent-secondary: #1F3A5F;
+  --accent-secondary-soft: rgba(31, 58, 95, 0.08);
+
+  --border-subtle: #E6E4DD;
+  --border-strong: #D2CEC2;
+  --border-focus: #1F3A5F;
+
+  --text-main: #141413;
+  --text-secondary: #585651;
+  --text-muted: #8C8880;
+
+  --user-bubble-bg: #ECEAE1;
+  --user-bubble-text: #141413;
+
+  --evidence-bg: #F5F4EE;
+  --evidence-border: #E0DDD4;
+  --evidence-badge-bg: #E7EDF5;
+  --evidence-badge-text: #1F3A5F;
+
+  --orb-1: rgba(217, 119, 87, 0.08);
+  --orb-2: rgba(31, 58, 95, 0.06);
+
+  --shadow-subtle: 0 4px 20px -2px rgba(20, 20, 19, 0.04), 0 2px 6px -1px rgba(20, 20, 19, 0.02);
+  --shadow-elevated: 0 12px 32px -4px rgba(20, 20, 19, 0.08), 0 4px 12px -2px rgba(20, 20, 19, 0.04);
+  --modal-backdrop: rgba(20, 20, 19, 0.55);
+
+  --font-serif: 'Noto Serif Thai', 'Newsreader', Georgia, serif;
+  --font-sans: 'IBM Plex Sans Thai', 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+[data-theme="dark"] {
+  /* Obsidian 3D Cyber Legal Palette */
+  --bg-canvas: #07090E;
+  --bg-surface: rgba(13, 18, 28, 0.85);
+  --bg-surface-muted: #0E1420;
+  --bg-surface-hover: #151F30;
+  --bg-dock: rgba(7, 9, 14, 0.94);
+
+  --accent-primary: #5FD8EE;
+  --accent-hover: #8AE4F5;
+  --accent-soft: rgba(95, 216, 238, 0.12);
+  --accent-text: #5FD8EE;
+
+  --accent-secondary: #5FD8EE;
+  --accent-secondary-soft: rgba(95, 216, 238, 0.15);
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(95, 216, 238, 0.28);
+  --border-focus: #5FD8EE;
+
+  --text-main: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  --user-bubble-bg: #111824;
+  --user-bubble-text: #F1F5F9;
+
+  --evidence-bg: rgba(10, 15, 24, 0.9);
+  --evidence-border: #1E2D3D;
+  --evidence-badge-bg: rgba(95, 216, 238, 0.14);
+  --evidence-badge-text: #5FD8EE;
+
+  --orb-1: rgba(95, 216, 238, 0.08);
+  --orb-2: rgba(30, 80, 160, 0.09);
+
+  --shadow-subtle: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 1px rgba(255, 255, 255, 0.05);
+  --shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.85), 0 0 24px rgba(95, 216, 238, 0.1);
+  --modal-backdrop: rgba(0, 0, 0, 0.85);
+
+  --font-serif: 'Bodoni Moda', 'Noto Serif Thai', 'Cormorant Garamond', serif;
+  --font-sans: 'IBM Plex Sans Thai', 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* ==========================================================================
+   Base Structure
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-canvas);
+  min-width: 320px;
+  line-height: 1.7;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle Laser Hairline in Dark Mode */
+[data-theme="dark"] .godly-shell::before {
+  content: "";
+  position: fixed;
+  left: 55%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(95, 216, 238, 0.4) 40%, transparent);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.godly-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Ambient Floating Mesh Lights
+   ========================================================================== */
+.godly-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.orb-alpha {
+  width: 480px;
+  height: 480px;
+  top: -100px;
+  left: 8%;
+  background: var(--orb-1);
+  animation: floatOrbA 16s infinite ease-in-out alternate;
+}
+
+.orb-beta {
+  width: 560px;
+  height: 560px;
+  bottom: 60px;
+  right: 5%;
+  background: var(--orb-2);
+  animation: floatOrbB 20s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes floatOrbA {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 40px) scale(1.08); }
+  100% { transform: translate(-30px, 60px) scale(0.96); }
+}
+
+@keyframes floatOrbB {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, -30px) scale(1.06); }
+  100% { transform: translate(30px, -50px) scale(0.94); }
+}
+
+/* ==========================================================================
+   Floating Toast Pill Notification
+   ========================================================================== */
+.godly-toast-pill {
+  position: fixed;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: toastPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+.toast-spark {
+  color: var(--accent-primary);
+  font-size: 13px;
+}
+
+@keyframes toastPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Architectural Top Navigation
+   ========================================================================== */
+.godly-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+  background: var(--bg-dock);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.godly-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.godly-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.godly-brand-emblem {
+  font-size: 24px;
+  color: var(--accent-primary);
+  line-height: 1;
+  display: inline-block;
+}
+
+.spinning-spark {
+  animation: spinSpark 26s linear infinite;
+}
+
+@keyframes spinSpark {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.godly-brand-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.godly-brand-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+}
+
+.godly-sub-tag {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
+  opacity: 0.9;
+}
+
+.godly-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+.status-dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.8); }
+}
+
+.godly-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.godly-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.godly-pill-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.godly-pill-btn:active {
+  transform: scale(0.97);
+}
+
+.tour-trigger {
+  background: var(--accent-soft);
+  border-color: var(--border-strong);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.btn-sparkle {
+  color: var(--accent-primary);
+  font-size: 12px;
+}
+
+/* Theme Toggle Pill (Segmented Recent.design style) */
+.godly-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  letter-spacing: 0.02em;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.godly-theme-toggle:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.godly-theme-toggle:active {
+  transform: scale(0.96);
+}
+
+.theme-toggle-icon {
+  font-size: 13px;
+}
+
+.theme-toggle-label {
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+}
+
+.godly-github-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-decoration: none;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  transition: all 0.18s ease;
+}
+
+.godly-github-pill:hover {
+  color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.arrow-glyph { font-size: 12px; }
+
+/* ==========================================================================
+   Main Canvas & Hero Section
+   ========================================================================== */
+.godly-container {
+  width: min(100% - 36px, 840px);
+  margin: 0 auto;
+  flex: 1;
+  padding: 44px 0 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.godly-hero-area {
+  margin: auto 0;
+  padding: 20px 0 32px;
+  text-align: center;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.godly-category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-subtle);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.14em;
+  margin-bottom: 20px;
+}
+
+.chip-indicator {
+  font-size: 9px;
+  color: var(--accent-primary);
+}
+
+.godly-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4.6vw, 48px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-main);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.hero-highlight {
+  color: var(--accent-primary);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.godly-hero-desc {
+  font-size: 15.5px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   Omnibox (Recent.design Search Input)
+   ========================================================================== */
+.godly-omnibox {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 16px 20px 12px;
+  box-shadow: var(--shadow-elevated);
+  text-align: left;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.godly-omnibox:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-elevated);
+}
+
+.godly-omnibox textarea {
+  width: 100%;
+  resize: none;
+  min-height: 64px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 15.5px;
+  line-height: 1.65;
+  font-family: var(--font-sans);
+}
+
+.godly-omnibox textarea::placeholder {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.godly-omnibox-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.tech-badge {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-sep {
+  opacity: 0.5;
+}
+
+.omnibox-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.char-count {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.godly-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 0;
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .godly-send-btn {
+  color: #07090E;
+  box-shadow: 0 2px 14px rgba(95, 216, 238, 0.45);
+}
+
+.godly-send-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px) scale(1.05);
+}
+
+.godly-send-btn:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.godly-send-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.godly-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+[data-theme="dark"] .godly-spinner {
+  border-color: rgba(7, 9, 14, 0.3);
+  border-top-color: #07090E;
+}
+
+/* ==========================================================================
+   Bento Grid Presets (Editorial Cards)
+   ========================================================================== */
+.godly-bento-section {
+  margin-top: 36px;
+  text-align: left;
+}
+
+.bento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+
+.bento-label {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.bento-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.godly-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  perspective: 1000px;
+}
+
+.bento-card {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-subtle);
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.2s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: var(--shadow-elevated);
+}
+
+[data-theme="dark"] .bento-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 18px rgba(95, 216, 238, 0.12);
+}
+
+.bento-card:active {
+  transform: scale(0.98);
+}
+
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-section-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-primary);
+  letter-spacing: 0.02em;
+}
+
+.card-law-tag {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.card-title-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+.card-desc-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.card-action-hover {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.18s ease;
+}
+
+.bento-card:hover .card-action-hover {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   Active Conversation Stream
+   ========================================================================== */
+.godly-stream-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.godly-message-item {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  animation: fadeIn 0.28s ease-out;
+}
+
+.msg-user {
+  justify-content: flex-end;
+}
+
+.msg-assistant {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.assistant-avatar {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-strong);
+  color: var(--accent-primary);
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.avatar-pulse {
+  animation: pulseAvatar 2.8s infinite ease-in-out;
+}
+
+@keyframes pulseAvatar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.message-content-wrapper {
+  max-width: min(100%, 760px);
+}
+
+.user-query-card {
+  background-color: var(--user-bubble-bg);
+  color: var(--user-bubble-text);
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
+}
+
+.assistant-response-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.response-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grounded-status-tag {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tag-green-dot {
+  color: #22c55e;
+  font-size: 8px;
+}
+
+.demo-verified-tag {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: #15803d;
+  background: rgba(34, 197, 94, 0.12);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+[data-theme="dark"] .demo-verified-tag {
+  color: #5FD8EE;
+  background: rgba(95, 216, 238, 0.15);
+}
+
+.msg-timestamp {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-left: auto;
+  font-family: var(--font-mono);
+}
+
+.fallback-alert-banner {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  color: #b45309;
+  font-size: 12.5px;
+}
+
+.not-found-alert-banner {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626;
+  font-size: 12.5px;
+}
+
+/* ==========================================================================
+   Typewriter Prose & Blinking Cursor
+   ========================================================================== */
+.godly-prose {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.godly-type-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--accent-primary);
+  font-weight: 700;
+  animation: cursorBlink 0.8s infinite ease-in-out;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ==========================================================================
+   Evidence Drawer (Recent.design 3D Perspective Cards)
+   ========================================================================== */
+.godly-evidence-box {
+  margin-top: 12px;
+  background: var(--evidence-bg);
+  border: 1px solid var(--evidence-border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.evidence-toggle-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 18px;
+  background: transparent;
+  border: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.evidence-toggle-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-main);
+}
+
+.toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.book-glyph { font-size: 13px; }
+
+.toggle-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.chevron-glyph {
+  font-size: 12px;
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chevron-open {
+  transform: rotate(180deg);
+}
+
+.evidence-items-container {
+  padding: 0 16px 16px;
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid var(--evidence-border);
+  perspective: 1200px;
+}
+
+.evidence-card-3d {
+  padding: 15px 18px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  margin-top: 10px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.2s ease;
+  transform-style: preserve-3d;
+  animation: fadeIn 0.35s ease-out;
+}
+
+.evidence-card-3d:hover {
+  transform: rotateY(-2deg) rotateX(1deg) translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--border-strong);
+}
+
+[data-theme="dark"] .evidence-card-3d:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(95, 216, 238, 0.16);
+}
+
+.evidence-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.source-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.source-seq-pill {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--accent-primary);
+}
+
+.source-doc-name {
+  font-size: 13.5px;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.source-cosine-badge {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--evidence-badge-text);
+  background: var(--evidence-badge-bg);
+  padding: 2px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+[data-theme="dark"] .source-cosine-badge {
+  border-color: rgba(95, 216, 238, 0.35);
+  box-shadow: 0 0 8px rgba(95, 216, 238, 0.15);
+}
+
+.source-meta-row {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 5px;
+  font-family: var(--font-mono);
+}
+
+.source-quote-body {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  border-left: 2px solid var(--accent-primary);
+  padding-left: 14px;
+}
+
+/* Response Actions */
+.response-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.action-copy-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--font-sans);
+}
+
+.action-copy-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-main);
+  border-color: var(--border-strong);
+}
+
+.action-copy-btn:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Thinking Radar Animation
+   ========================================================================== */
+.godly-thinking-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.godly-thinking-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: sweepWave 1.8s infinite;
+}
+
+[data-theme="dark"] .godly-thinking-card::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(95, 216, 238, 0.12) 50%,
+    transparent 100%
+  );
+}
+
+@keyframes sweepWave {
+  to { transform: translateX(100%); }
+}
+
+.thinking-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  animation: bounceDot 1.4s infinite ease-in-out both;
+}
+
+.dot-1 { animation-delay: -0.32s; }
+.dot-2 { animation-delay: -0.16s; }
+
+.thinking-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Error Banner
+   ========================================================================== */
+.godly-error-banner {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #dc2626;
+  font-size: 13.5px;
+  margin-top: 24px;
+  animation: shakeX 0.4s ease-in-out;
+}
+
+@keyframes shakeX {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.error-icon-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #dc2626;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.error-recovery-btn {
+  display: block;
+  margin-top: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  border: 0;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.error-recovery-btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   Floating Bottom Dock
+   ========================================================================== */
+.godly-bottom-dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: var(--bg-dock);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-subtle);
+  padding: 10px 18px 12px;
+  animation: slideDockUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDockUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dock-inner-container {
+  width: min(100%, 840px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dock-chips-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.dock-chips-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.chips-title {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.dock-chip-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: var(--text-main);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.dock-chip-btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.dock-input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 8px 12px;
+  box-shadow: var(--shadow-subtle);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dock-input-wrapper:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft), var(--shadow-subtle);
+}
+
+.dock-input-wrapper textarea {
+  flex: 1;
+  resize: none;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 14.5px;
+  line-height: 1.5;
+  font-family: var(--font-sans);
+  max-height: 140px;
+}
+
+.dock-send-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  border: 0;
+  color: #FFFFFF;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .dock-send-btn {
+  color: #07090E;
+}
+
+.dock-send-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+.dock-send-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.dock-send-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.godly-spinner-sm {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.dock-disclaimer-text {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Guided Tour Modal (Recent.design Glass Overlay)
+   ========================================================================== */
+.godly-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--modal-backdrop);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.godly-modal-card {
+  width: min(100%, 540px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow-elevated);
+  animation: popUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-count {
+  font-size: 11.5px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.step-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+}
+
+.modal-dismiss-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.modal-dismiss-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-main);
+}
+
+.modal-hero-content {
+  text-align: center;
+  padding: 22px 0 12px;
+}
+
+.modal-emblem-icon {
+  font-size: 42px;
+  color: var(--accent-primary);
+  line-height: 1;
+  margin-bottom: 12px;
+  animation: floatEmblem 3s infinite ease-in-out;
+}
+
+@keyframes floatEmblem {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.modal-main-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.modal-main-desc {
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.modal-highlight-box {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  border: 1px solid var(--border-strong);
+  color: var(--accent-text);
+  font-size: 12.5px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.highlight-star {
+  color: var(--accent-primary);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.modal-dots-track {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 22px 0 18px;
+}
+
+.modal-progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dot-selected {
+  background: var(--accent-primary);
+  width: 22px;
+  border-radius: 999px;
+}
+
+.modal-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+  gap: 10px;
+}
+
+.bar-left, .bar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-prev-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.modal-prev-btn:hover {
+  color: var(--text-main);
+}
+
+.modal-run-btn {
+  background: #15803d;
+  color: #ffffff;
+  border: 0;
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.modal-run-btn:hover {
+  background: #166534;
+  transform: translateY(-1px);
+}
+
+.modal-next-btn {
+  background: var(--accent-primary);
+  border: 0;
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+[data-theme="dark"] .modal-next-btn {
+  color: #07090E;
+}
+
+.modal-next-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Typhoon & Multi-Model Engine Selector + Category Filter Bar
+   ========================================================================== */
+.godly-model-selector {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-surface-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+}
+
+.model-pill-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.model-pill-opt:hover {
+  color: var(--text-main);
+}
+
+.model-pill-opt.opt-active {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-weight: 600;
+  border-color: var(--border-subtle);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .model-pill-opt.opt-active {
+  background: #151F30;
+  color: var(--accent-primary);
+  border-color: rgba(95, 216, 238, 0.35);
+  box-shadow: 0 0 12px rgba(95, 216, 238, 0.22);
+}
+
+.opt-icon {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.opt-name {
+  line-height: 1;
+}
+
+/* Category Filter Bar */
+.godly-categories-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.cat-label-prefix {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cat-pills-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-subtle);
+  white-space: nowrap;
+}
+
+.category-filter-pill:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.category-filter-pill.filter-active {
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(31, 58, 95, 0.22);
+}
+
+[data-theme="dark"] .category-filter-pill.filter-active {
+  background: rgba(95, 216, 238, 0.16);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 14px rgba(95, 216, 238, 0.28);
+}
+
+.cat-pill-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.cat-pill-label {
+  line-height: 1.2;
+}
+
+/* Category & Model tags in Message and Omnibox */
+.meta-cat-tag {
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .meta-cat-tag {
+  color: var(--accent-primary);
+}
+
+.model-indicator-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--bg-surface-muted);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  display: inline-flex;
+  align-items: center;
+}
+
+[data-theme="dark"] .model-indicator-tag {
+  background: rgba(95, 216, 238, 0.1);
+  color: var(--accent-primary);
+  border-color: rgba(95, 216, 238, 0.25);
+}
+
+/* ==========================================================================
+   Animations & Responsive Breakpoints
+   ========================================================================== */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popUp {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes bounceDot {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+@media (max-width: 680px) {
+  .godly-header { height: 58px; padding: 0 16px; }
+  .godly-status-badge, .godly-github-pill { display: none; }
+  .godly-container { width: min(100% - 24px, 840px); padding-top: 24px; }
+  .godly-hero-title { font-size: 28px; }
+  .godly-hero-desc { font-size: 14px; }
+  .godly-bento-grid { grid-template-columns: 1fr; }
+  .modal-action-bar { flex-direction: column-reverse; }
+  .bar-right, .bar-left, .modal-next-btn, .modal-run-btn, .modal-prev-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

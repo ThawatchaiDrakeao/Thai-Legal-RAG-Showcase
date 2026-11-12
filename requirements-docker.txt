@@ -1,0 +1,15 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.13.0+cpu
+numpy==1.26.4
+google-genai
+faiss-cpu
+pypdf
+pdfplumber
+PyMuPDF
+pytesseract
+Pillow
+opencv-python-headless
+python-dotenv
+fastapi
+uvicorn[standard]
+sentence-transformers

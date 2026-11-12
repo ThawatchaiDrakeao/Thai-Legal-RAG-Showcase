@@ -1,0 +1,640 @@
+{
+  "summary": {
+    "TOTAL": 39,
+    "LABELED": 39,
+    "BASELINE": {
+      "correct": 23,
+      "total": 39,
+      "accuracy": 0.5897
+    },
+    "FULL_LEGAL": {
+      "correct": 28,
+      "total": 39,
+      "accuracy": 0.7179
+    },
+    "SOURCE_AWARE": {
+      "correct": 28,
+      "total": 39,
+      "accuracy": 0.7179
+    },
+    "IMPROVED": 5,
+    "REGRESSED": 0,
+    "TOP1_CHANGED": 7,
+    "ACCURACY_DELTA": 0.1282,
+    "SOURCE_CORRECTNESS": {
+      "baseline": 0.5897,
+      "full_legal": 0.7179
+    },
+    "FALSE_POSITIVE_COUNT": 11,
+    "CONTRADICTION_OR_MISMATCH_COUNT": 0
+  },
+  "category_metrics": {
+    "exact_article": {
+      "cases": 3,
+      "baseline_correct": 1,
+      "full_legal_correct": 3,
+      "regressed": 0
+    },
+    "cross_reference": {
+      "cases": 2,
+      "baseline_correct": 0,
+      "full_legal_correct": 0,
+      "regressed": 0
+    },
+    "nighttime_theft": {
+      "cases": 3,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    },
+    "snatching": {
+      "cases": 2,
+      "baseline_correct": 2,
+      "full_legal_correct": 2,
+      "regressed": 0
+    },
+    "snatching_thawi": {
+      "cases": 1,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    },
+    "embezzlement_possession": {
+      "cases": 2,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    },
+    "found_property": {
+      "cases": 2,
+      "baseline_correct": 0,
+      "full_legal_correct": 0,
+      "regressed": 0
+    },
+    "intentional_killing": {
+      "cases": 3,
+      "baseline_correct": 3,
+      "full_legal_correct": 3,
+      "regressed": 0
+    },
+    "no_intent_to_kill": {
+      "cases": 3,
+      "baseline_correct": 3,
+      "full_legal_correct": 3,
+      "regressed": 0
+    },
+    "negligent_death": {
+      "cases": 2,
+      "baseline_correct": 2,
+      "full_legal_correct": 2,
+      "regressed": 0
+    },
+    "bodily_harm": {
+      "cases": 5,
+      "baseline_correct": 3,
+      "full_legal_correct": 3,
+      "regressed": 0
+    },
+    "self_defense": {
+      "cases": 4,
+      "baseline_correct": 4,
+      "full_legal_correct": 4,
+      "regressed": 0
+    },
+    "civil_criminal_collision": {
+      "cases": 4,
+      "baseline_correct": 1,
+      "full_legal_correct": 4,
+      "regressed": 0
+    },
+    "no_signal_control": {
+      "cases": 3,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    }
+  },
+  "known_failure_modes": {
+    "nighttime_theft": {
+      "cases": 3,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    },
+    "snatching": {
+      "cases": 2,
+      "baseline_correct": 2,
+      "full_legal_correct": 2,
+      "regressed": 0
+    },
+    "snatching_thawi": {
+      "cases": 1,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    },
+    "embezzlement_possession": {
+      "cases": 2,
+      "baseline_correct": 1,
+      "full_legal_correct": 1,
+      "regressed": 0
+    },
+    "found_property": {
+      "cases": 2,
+      "baseline_correct": 0,
+      "full_legal_correct": 0,
+      "regressed": 0
+    },
+    "no_intent_to_kill": {
+      "cases": 3,
+      "baseline_correct": 3,
+      "full_legal_correct": 3,
+      "regressed": 0
+    },
+    "self_defense": {
+      "cases": 4,
+      "baseline_correct": 4,
+      "full_legal_correct": 4,
+      "regressed": 0
+    },
+    "civil_criminal_collision": {
+      "cases": 4,
+      "baseline_correct": 1,
+      "full_legal_correct": 4,
+      "regressed": 0
+    }
+  },
+  "failure_cases": [
+    {
+      "category": "cross_reference",
+      "query": "มาตรา 69 ที่อ้างมาตรา 67 และ 68 กล่าวถึงอะไร",
+      "expected": [
+        69
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 62,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8761166334152222
+      },
+      "full_legal": {
+        "article": 69,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.980177755355835,
+        "contributions": {
+          "exact_target_article": 0.12,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 69,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.980177755355835,
+        "contributions": {
+          "exact_target_article": 0.12,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.0
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": true,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "cross_reference",
+      "query": "มาตรา 290 ที่อ้างถึงมาตรา 289 มีเงื่อนไขอย่างไร",
+      "expected": [
+        290
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 182,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8625257015228271
+      },
+      "full_legal": {
+        "article": 290,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.954197998046875,
+        "contributions": {
+          "exact_target_article": 0.12,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 290,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.954197998046875,
+        "contributions": {
+          "exact_target_article": 0.12,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.0
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": true,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "nighttime_theft",
+      "query": "ลักทรัพย์ในเวลากลางคืนมีโทษอย่างไร",
+      "expected": [
+        335
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 365,
+        "source": "pythainlp_thai_law",
+        "score": 0.8831988573074341
+      },
+      "full_legal": {
+        "article": 365,
+        "source": "pythainlp_thai_law",
+        "score": 1.033198857307434,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.15,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 365,
+        "source": "pythainlp_thai_law",
+        "score": 1.153198857307434,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.15,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.12
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "nighttime_theft",
+      "query": "ขโมยของตอนกลางคืนเข้ามาตราใด",
+      "expected": [
+        335
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 365,
+        "source": "pythainlp_thai_law",
+        "score": 0.8765896558761597
+      },
+      "full_legal": {
+        "article": 365,
+        "source": "pythainlp_thai_law",
+        "score": 1.0265896558761596,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.15,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 365,
+        "source": "pythainlp_thai_law",
+        "score": 1.0265896558761596,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.15,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.0
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "embezzlement_possession",
+      "query": "ครอบครองทรัพย์ของผู้อื่นแล้วเอาเป็นของตนเข้ามาตราใด",
+      "expected": [
+        352
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 1377,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.9016464948654175
+      },
+      "full_legal": {
+        "article": 1377,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 1.0516464948654174,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.15,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 1377,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 1.0516464948654174,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.15,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.0
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "found_property",
+      "query": "เก็บได้ทรัพย์ที่ตกหล่นแล้วเบียดบังเป็นของตนผิดมาตราใด",
+      "expected": [
+        355
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 1323,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.9067769050598145
+      },
+      "full_legal": {
+        "article": 1323,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.9067769050598145,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 1323,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.9067769050598145,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.0
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "found_property",
+      "query": "พบของมีค่าฝังไว้และไม่มีเจ้าของแล้วเอาไปเป็นของตนมีความผิดหรือไม่",
+      "expected": [
+        355
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 1601,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8815847635269165
+      },
+      "full_legal": {
+        "article": 1601,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8815847635269165,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 32,
+        "source": "pythainlp_thai_law",
+        "score": 1.0014125657081605,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.12
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": true,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "bodily_harm",
+      "query": "ทำร้ายผู้อื่นจนเกิดอันตรายแก่กายเป็นมาตราใด",
+      "expected": [
+        295
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 0.9113545417785645
+      },
+      "full_legal": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 0.9113545417785645,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 1.0313545417785646,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.12
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "bodily_harm",
+      "query": "ทำร้ายร่างกายทั่วไปมีโทษอย่างไร",
+      "expected": [
+        295
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 0.8964163064956665
+      },
+      "full_legal": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 0.8964163064956665,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 1.0164163064956666,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.12
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "no_signal_control",
+      "query": "พบกระเป๋าเงินตกอยู่แล้วเอาไปเป็นของตนผิดมาตราใด",
+      "expected": [
+        355
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 1111,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8955696821212769
+      },
+      "full_legal": {
+        "article": 1111,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8955696821212769,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 1111,
+        "source": "civil_commercial_code_snapshot.pdf",
+        "score": 0.8955696821212769,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.0
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    },
+    {
+      "category": "no_signal_control",
+      "query": "ทำร้ายผู้อื่นจนบาดเจ็บเล็กน้อยมีความผิดอย่างไร",
+      "expected": [
+        295
+      ],
+      "expected_source": "pythainlp_thai_law",
+      "baseline": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 0.9044961929321289
+      },
+      "full_legal": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 0.9044961929321289,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0
+        }
+      },
+      "source_aware": {
+        "article": 391,
+        "source": "pythainlp_thai_law",
+        "score": 1.024496192932129,
+        "contributions": {
+          "exact_target_article": 0.0,
+          "reference_article": 0.0,
+          "matching_legal_signal": 0.0,
+          "mismatching_legal_signal": 0.0,
+          "source_match": 0.12
+        }
+      },
+      "baseline_correct": false,
+      "full_correct": false,
+      "source_aware_correct": false,
+      "top1_changed": false,
+      "source_aware_top1_changed": false,
+      "signal_mismatch_top1": false
+    }
+  ],
+  "decision": "PASS",
+  "limitations": [
+    "The metadata stores 335 ทวิ and 336 ทวิ under the same numeric article values as 335 and 336; article/source identity cannot distinguish their subarticle text."
+  ],
+  "safety": {
+    "expected_leakage": "PASS",
+    "synthetic_score": "PASS",
+    "production_tracked_diff": "CLEAN"
+  }
+}
